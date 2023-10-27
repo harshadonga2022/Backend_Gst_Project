@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors') //Connection with React
 
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/users');
@@ -14,13 +15,16 @@ var gst_sales_MasterRouter = require('./routes/gst_salesRouter');
 
 /*____________ Connection with MongoDB ________________*/
 const mongoose = require('mongoose'); //require mongoose
-mongoose.connect('mongodb://127.0.0.1:27017/harsha_ff') //Database in MongoDB
+mongoose.connect('mongodb+srv://harshadonga2022:cdmi123@cluster0.mpiaze4.mongodb.net/harsha_ff?retryWrites=true&w=majority') //Database in MongoDB
   .then(() => console.log('Connected!')) //
   .catch((error)=>{
     console.log(error.message)
   })
 
   var app = express();
+
+/*Connection with React*/
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
